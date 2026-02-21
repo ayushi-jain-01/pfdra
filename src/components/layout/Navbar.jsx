@@ -40,8 +40,7 @@ export const Navbar = ({ variant = 'landing' }) => {
     const DASHBOARD_LINKS = [
         { label: 'Dashboard', href: '/dashboard' },
         { label: 'Plan Retirement', href: '/plan-retirement' },
-        { label: 'Verify Identity', href: '/verify-identity' },
-        { label: 'Portfolio', href: '#' },
+        { label: 'Open Account', href: '/onboarding' },
         { label: 'Reports', href: '#' },
     ];
 
@@ -165,7 +164,7 @@ export const Navbar = ({ variant = 'landing' }) => {
                         </button>
                         <button
                             className="nps-navbar__signup nps-navbar__signup--full"
-                            onClick={() => { setMobileOpen(false); window.location.href = '/dashboard'; }}
+                            onClick={() => { setMobileOpen(false); window.location.href = '/onboarding'; }}
                         >
                             <TrendingUp size={14} /> Open Account
                         </button>

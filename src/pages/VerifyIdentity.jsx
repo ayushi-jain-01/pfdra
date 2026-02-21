@@ -183,6 +183,8 @@ export const VerifyIdentity = () => {
             setSubmitting(false);
             setSubmitted(true);
             setActiveStep(2);
+            // Navigate to full onboarding flow after brief success display
+            setTimeout(() => { window.location.href = '/onboarding'; }, 1200);
         }, 2200);
     };
 

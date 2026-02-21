@@ -5,6 +5,7 @@ import { LandingPage } from './pages/LandingPage';
 import { Dashboard } from './pages/Dashboard';
 import { PlanRetirement } from './pages/PlanRetirement';
 import { VerifyIdentity } from './pages/VerifyIdentity';
+import { OnboardingFlow } from './pages/OnboardingFlow';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/plan-retirement" element={<PlanRetirement />} />
         <Route path="/verify-identity" element={<VerifyIdentity />} />
+        <Route path="/onboarding" element={<OnboardingFlow />} />
       </Routes>
     </Router>
   );
