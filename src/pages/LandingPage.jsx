@@ -51,6 +51,8 @@ const FEATURES = [
    ===================================================================== */
 export const LandingPage = () => {
     const barRef = useRef(null);
+    const videoRef = useRef(null);
+    const heroRef = useRef(null);
 
     /* ── Staggered chart bar animation ── */
     useEffect(() => {
@@ -58,6 +60,41 @@ export const LandingPage = () => {
         barRef.current.querySelectorAll('.chart-bar').forEach((bar, i) => {
             bar.style.animationDelay = `${0.05 * i + 0.4}s`;
         });
+    }, []);
+
+    /* ── Scroll-synced video scrubbing ── */
+    useEffect(() => {
+        const video = videoRef.current;
+        const hero = heroRef.current;
+        if (!video || !hero) return;
+
+        // Wait for metadata to load so we know video duration
+        const handleMetadata = () => {
+            const scrub = () => {
+                const heroRect = hero.getBoundingClientRect();
+                const heroHeight = hero.offsetHeight;
+                // scrolled distance into the hero section
+                const scrolled = -heroRect.top;
+                // clamp progress between 0 and 1
+                const progress = Math.min(Math.max(scrolled / heroHeight, 0), 1);
+                // scrub video proportionally
+                if (video.duration) {
+                    video.currentTime = progress * video.duration;
+                }
+            };
+
+            window.addEventListener('scroll', scrub, { passive: true });
+            // Run once on mount in case user is already mid-page
+            scrub();
+
+            return () => window.removeEventListener('scroll', scrub);
+        };
+
+        video.addEventListener('loadedmetadata', handleMetadata);
+        // If metadata already loaded
+        if (video.readyState >= 1) handleMetadata();
+
+        return () => video.removeEventListener('loadedmetadata', handleMetadata);
     }, []);
 
     /* ── Scroll-reveal IntersectionObserver ── */
@@ -88,7 +125,22 @@ export const LandingPage = () => {
             {/* ═══════════════════════════════════════════════════════
                 HERO SECTION
             ═══════════════════════════════════════════════════════ */}
-            <header className="hero-section">
+            <header className="hero-section" ref={heroRef}>
+
+                {/* ── Background Video ── */}
+                <video
+                    ref={videoRef}
+                    className="hero-video-bg"
+                    src="/background_vid/hero_bg.mp4"
+                    muted
+                    playsInline
+                    preload="auto"
+                    aria-hidden="true"
+                />
+
+                {/* ── Video dark gradient overlay ── */}
+                <div className="hero-video-overlay" />
+
                 <div className="hero-bg" />
                 <div className="hero-orb hero-orb-1" />
                 <div className="hero-orb hero-orb-2" />
