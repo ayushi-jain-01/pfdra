@@ -40,8 +40,8 @@ export const Navbar = ({ variant = 'landing' }) => {
     const DASHBOARD_LINKS = [
         { label: 'Dashboard', href: '/dashboard' },
         { label: 'Plan Retirement', href: '/plan-retirement' },
+        { label: 'Verify Identity', href: '/verify-identity' },
         { label: 'Portfolio', href: '#' },
-        { label: 'Transactions', href: '#' },
         { label: 'Reports', href: '#' },
     ];
 
@@ -104,7 +104,7 @@ export const Navbar = ({ variant = 'landing' }) => {
                         <button
                             id="nav-signup-btn"
                             className="nps-navbar__signup"
-                            onClick={() => window.location.href = '/dashboard'}
+                            onClick={() => window.location.href = '/verify-identity'}
                             aria-label="Create NPS account"
                         >
                             <TrendingUp size={14} />

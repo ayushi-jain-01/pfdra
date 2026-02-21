@@ -1,0 +1,861 @@
+/* ============================================================
+   VERIFY IDENTITY PAGE — NPS Central
+   Hybrid dark-header + light body | KYC First Step
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ── Root ── */
+.vi-root {
+    font-family: 'Inter', sans-serif;
+    background: #F8FAFC;
+    min-height: 100vh;
+    color: #0F172A;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Container ── */
+.vi-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+.vi-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg,
+            #0B1026 0%,
+            #1E1B4B 40%,
+            #4C1D95 75%,
+            #7C3AED 100%);
+    padding: 130px 0 80px;
+}
+
+.vi-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+}
+
+.vi-orb-a {
+    width: 460px;
+    height: 460px;
+    top: -140px;
+    left: -100px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, transparent 70%);
+}
+
+.vi-orb-b {
+    width: 380px;
+    height: 380px;
+    bottom: -80px;
+    right: -60px;
+    background: radial-gradient(circle, rgba(20, 184, 166, 0.18) 0%, transparent 70%);
+}
+
+/* Hero text */
+.vi-hero-text {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.vi-hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #14B8A6;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 14px;
+}
+
+.vi-hero-title {
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+
+.vi-hero-sub {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.65;
+}
+
+/* ── Step Indicator ── */
+.vi-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+.vi-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.45;
+    transition: opacity 0.3s ease;
+}
+
+.vi-step-active {
+    opacity: 1;
+}
+
+.vi-step-done {
+    opacity: 0.75;
+}
+
+.vi-step-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1.5px solid rgba(255, 255, 255, 0.20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.vi-step-active .vi-step-dot {
+    background: #14B8A6;
+    border-color: #14B8A6;
+    box-shadow: 0 0 16px rgba(20, 184, 166, 0.50);
+}
+
+.vi-step-done .vi-step-dot {
+    background: rgba(20, 184, 166, 0.20);
+    border-color: rgba(20, 184, 166, 0.40);
+}
+
+.vi-step-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.70);
+}
+
+.vi-step-active .vi-step-num {
+    color: #FFFFFF;
+}
+
+.vi-step-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.vi-step-active .vi-step-label {
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.vi-step-done .vi-step-label {
+    color: #14B8A6;
+}
+
+.vi-step-line {
+    width: 60px;
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.12);
+    margin-bottom: 20px;
+    flex-shrink: 0;
+    transition: background 0.4s ease;
+}
+
+.vi-step-line-done {
+    background: rgba(20, 184, 166, 0.45);
+}
+
+@media (max-width: 640px) {
+    .vi-step-line {
+        width: 28px;
+    }
+
+    .vi-step-label {
+        display: none;
+    }
+}
+
+/* Wave */
+.vi-hero-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+}
+
+.vi-hero-wave svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* =====================================================
+   MAIN
+   ===================================================== */
+.vi-main {
+    padding: 40px 0 64px;
+}
+
+/* =====================================================
+   VERIFICATION CARD
+   ===================================================== */
+.vi-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 20px;
+    padding: 36px;
+    max-width: 620px;
+    margin: 0 auto 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(0, 0, 0, 0.06);
+    animation: vi-fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Card header */
+.vi-card-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #F1F5F9;
+    margin-bottom: 28px;
+}
+
+.vi-card-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(20, 184, 166, 0.10);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.vi-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+.vi-card-sub {
+    font-size: 13px;
+    color: #94A3B8;
+    margin-top: 3px;
+    line-height: 1.5;
+}
+
+/* =====================================================
+   FORM FIELDS
+   ===================================================== */
+.vi-field {
+    margin-bottom: 22px;
+}
+
+.vi-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0F172A;
+    margin-bottom: 8px;
+}
+
+.vi-label-required {
+    color: #EF4444;
+    margin-left: 2px;
+}
+
+.vi-label-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.vi-label-row .vi-label {
+    margin-bottom: 0;
+}
+
+/* Input wrapper */
+.vi-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #E5E7EB;
+    border-radius: 12px;
+    background: #FFFFFF;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.vi-input-wrap:focus-within {
+    border-color: #14B8A6;
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.12);
+}
+
+.vi-input-wrap.vi-input-valid {
+    border-color: #22C55E;
+    background: #F0FDF4;
+}
+
+.vi-input-wrap.vi-input-valid:focus-within {
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+.vi-input-wrap.vi-input-error {
+    border-color: #EF4444;
+    background: #FFF5F5;
+}
+
+.vi-input-wrap.vi-input-error:focus-within {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.12);
+}
+
+/* Input */
+.vi-input {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #0F172A;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.01em;
+    min-width: 0;
+}
+
+.vi-input::placeholder {
+    color: #CBD5E1;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+/* Field status icon */
+.vi-field-icon {
+    flex-shrink: 0;
+    margin-right: 14px;
+}
+
+/* Eye toggle */
+.vi-eye-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Phone prefix */
+.vi-phone-prefix {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 4px 0 14px;
+    flex-shrink: 0;
+    background: transparent;
+}
+
+.vi-flag {
+    font-size: 18px;
+}
+
+.vi-code {
+    font-size: 15px;
+    font-weight: 700;
+    color: #475569;
+}
+
+.vi-divider {
+    width: 1.5px;
+    height: 20px;
+    background: #E5E7EB;
+    margin-left: 8px;
+}
+
+.vi-input-phone {
+    padding-left: 10px;
+}
+
+/* Hint */
+.vi-field-hint {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+.vi-hint-valid {
+    color: #16A34A;
+}
+
+.vi-hint-error {
+    color: #DC2626;
+}
+
+/* Tooltip */
+.vi-tooltip-wrap {
+    position: relative;
+    display: inline-flex;
+}
+
+.vi-tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0F172A;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    z-index: 100;
+    max-width: 240px;
+    white-space: normal;
+    line-height: 1.5;
+    pointer-events: none;
+    text-align: center;
+}
+
+/* Send OTP button */
+.vi-otp-send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px 24px;
+    background: rgba(20, 184, 166, 0.08);
+    border: 1.5px solid rgba(20, 184, 166, 0.30);
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #14B8A6;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
+}
+
+.vi-otp-send-btn:hover:not(:disabled) {
+    background: rgba(20, 184, 166, 0.14);
+    border-color: rgba(20, 184, 166, 0.50);
+    transform: translateY(-1px);
+}
+
+/* =====================================================
+   OTP SECTION
+   ===================================================== */
+.vi-otp-section {
+    background: #F8FAFC;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 22px;
+    animation: vi-slideDown 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    margin-bottom: 4px;
+}
+
+@keyframes vi-slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-12px) scaleY(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.vi-otp-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.vi-otp-desc {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.vi-otp-desc strong {
+    color: #0F172A;
+    font-weight: 700;
+}
+
+.vi-otp-change {
+    background: none;
+    border: none;
+    color: #14B8A6;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+    margin-left: 6px;
+}
+
+.vi-otp-verified-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #16A34A;
+    background: #DCFCE7;
+    border: 1px solid #BBF7D0;
+    border-radius: 999px;
+    padding: 4px 12px;
+    animation: vi-fadeUp 0.3s ease;
+}
+
+/* OTP boxes */
+.vi-otp-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.vi-otp-box {
+    width: 52px;
+    height: 58px;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    color: #0F172A;
+    background: #FFFFFF;
+    outline: none;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.15s ease;
+    letter-spacing: 0;
+    caret-color: #14B8A6;
+}
+
+.vi-otp-box:focus {
+    border-color: #14B8A6;
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.15);
+    transform: scale(1.04);
+}
+
+.vi-otp-filled {
+    border-color: #14B8A6;
+    background: rgba(20, 184, 166, 0.05);
+}
+
+.vi-otp-verified {
+    border-color: #22C55E !important;
+    background: #F0FDF4 !important;
+    color: #16A34A !important;
+}
+
+@media (max-width: 420px) {
+    .vi-otp-box {
+        width: 42px;
+        height: 50px;
+        font-size: 18px;
+    }
+
+    .vi-otp-row {
+        gap: 7px;
+    }
+}
+
+/* Resend row */
+.vi-otp-resend-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.vi-resend-timer {
+    font-size: 13px;
+    color: #94A3B8;
+    font-weight: 500;
+}
+
+.vi-timer-val {
+    color: #475569;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.vi-resend-btn {
+    background: none;
+    border: none;
+    color: #14B8A6;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    text-decoration: underline;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.vi-resend-btn:hover {
+    color: #0F9488;
+}
+
+.vi-otp-demo-hint {
+    font-size: 11px;
+    color: #CBD5E1;
+    font-style: italic;
+}
+
+/* =====================================================
+   DIVIDER
+   ===================================================== */
+.vi-divider {
+    height: 1px;
+    background: #F1F5F9;
+    margin: 24px 0;
+}
+
+/* =====================================================
+   SECURITY BADGES
+   ===================================================== */
+.vi-security-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 22px;
+}
+
+.vi-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(37, 99, 235, 0.05);
+    border: 1px solid rgba(37, 99, 235, 0.12);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2563EB;
+}
+
+/* =====================================================
+   SUBMIT BUTTON
+   ===================================================== */
+.vi-submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(135deg, #0F9488, #14B8A6);
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 18px rgba(20, 184, 166, 0.32);
+    position: relative;
+    overflow: hidden;
+}
+
+.vi-submit-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.2s ease;
+    border-radius: 999px;
+}
+
+.vi-submit-btn:hover:not(:disabled)::after {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.vi-submit-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(20, 184, 166, 0.45);
+}
+
+.vi-submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 4px 14px rgba(20, 184, 166, 0.30);
+}
+
+/* Disabled state */
+.vi-btn-disabled {
+    background: #E5E7EB !important;
+    color: #94A3B8 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Success state */
+.vi-btn-success {
+    background: linear-gradient(135deg, #15803D, #22C55E) !important;
+    box-shadow: 0 4px 18px rgba(34, 197, 94, 0.32) !important;
+}
+
+/* Spinner */
+.vi-spin {
+    animation: vi-spin 0.8s linear infinite;
+}
+
+@keyframes vi-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Consent */
+.vi-consent-text {
+    font-size: 11px;
+    color: #94A3B8;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 14px;
+}
+
+/* =====================================================
+   INFO STRIP
+   ===================================================== */
+.vi-info-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 16px 24px;
+    border-radius: 12px;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    max-width: 620px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.vi-info-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    color: #475569;
+    font-weight: 500;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+.vi-footer {
+    border-top: 1px solid #E5E7EB;
+    padding: 20px 0;
+}
+
+.vi-footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #94A3B8;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* =====================================================
+   SCROLL REVEAL
+   ===================================================== */
+[data-vi-reveal] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-vi-reveal].vi-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+@keyframes vi-fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 768px) {
+    .vi-container {
+        padding: 0 20px;
+    }
+
+    .vi-hero {
+        padding: 110px 0 70px;
+    }
+
+    .vi-card {
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+
+    .vi-info-strip {
+        gap: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .vi-security-badges {
+        gap: 7px;
+    }
+
+    .vi-badge {
+        font-size: 11px;
+        padding: 5px 11px;
+    }
+}
