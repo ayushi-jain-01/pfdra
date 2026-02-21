@@ -39,6 +39,7 @@ export const Navbar = ({ variant = 'landing' }) => {
 
     const DASHBOARD_LINKS = [
         { label: 'Dashboard', href: '/dashboard' },
+        { label: 'Plan Retirement', href: '/plan-retirement' },
         { label: 'Portfolio', href: '#' },
         { label: 'Transactions', href: '#' },
         { label: 'Reports', href: '#' },
