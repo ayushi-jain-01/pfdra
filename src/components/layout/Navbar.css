@@ -1,0 +1,411 @@
+/* ============================================================
+   NPS CENTRAL — SHARED NAVBAR
+   Used on every page. Transparent over dark hero → glass on scroll.
+   ============================================================ */
+
+/* ── Root ── */
+.nps-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    height: 72px;
+    /* Truly transparent at rest — hero gradient shows through */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    transition:
+        background 0.4s ease,
+        box-shadow 0.4s ease,
+        backdrop-filter 0.4s ease;
+}
+
+/* On scroll — premium indigo glass */
+.nps-navbar--scrolled {
+    background: linear-gradient(135deg,
+            rgba(11, 16, 38, 0.88) 0%,
+            rgba(30, 27, 75, 0.82) 50%,
+            rgba(76, 29, 149, 0.72) 100%);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    box-shadow:
+        inset 0 -1px 0 rgba(147, 51, 234, 0.20),
+        0 8px 28px rgba(11, 16, 38, 0.28);
+}
+
+/* ── Inner container ── */
+.nps-navbar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+}
+
+/* ── Brand ── */
+.nps-navbar__brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.nps-navbar__brand-icon {
+    width: 30px;
+    height: 30px;
+    background: linear-gradient(135deg, #14B8A6 0%, #2563EB 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(20, 184, 166, 0.35);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nps-navbar__brand:hover .nps-navbar__brand-icon {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.55);
+    transform: scale(1.05);
+}
+
+.nps-navbar__brand-name {
+    font-size: 19px;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+}
+
+/* "Central" — teal accent matching MF Central */
+.nps-navbar__brand-name em {
+    font-style: normal;
+    color: #14B8A6;
+}
+
+/* ── Desktop nav links ── */
+.nps-navbar__links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex: 1;
+}
+
+.nps-navbar__link {
+    position: relative;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.80);
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
+}
+
+.nps-navbar__link:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Active link — white + teal underline */
+.nps-navbar__link--active {
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.nps-navbar__link--active::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 2px;
+    background: #14B8A6;
+    border-radius: 99px;
+    animation: navUnderline 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes navUnderline {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+
+    to {
+        width: 18px;
+        opacity: 1;
+    }
+}
+
+/* ── Right action area ── */
+.nps-navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* Sign In — ghost text */
+.nps-navbar__signin {
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    padding: 7px 14px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.nps-navbar__signin:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Open Account / Sign Up — teal pill */
+.nps-navbar__signup {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #14B8A6 0%, #0F9488 100%);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 999px;
+    box-shadow: 0 4px 14px rgba(20, 184, 166, 0.30);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+}
+
+.nps-navbar__signup:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(20, 184, 166, 0.45);
+}
+
+.nps-navbar__signup--full {
+    width: 100%;
+    justify-content: center;
+    border-radius: 12px;
+    padding: 12px 20px;
+}
+
+/* ── Dashboard: Notification icon ── */
+.nps-navbar__icon-btn {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.85);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.nps-navbar__icon-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.20);
+    color: #FFFFFF;
+}
+
+.nps-navbar__notif-dot {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    background: #EF4444;
+    border-radius: 50%;
+    border: 1.5px solid rgba(11, 16, 38, 0.6);
+}
+
+/* ── Dashboard: User chip ── */
+.nps-navbar__user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.nps-navbar__user:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Avatar circle */
+.nps-navbar__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #14B8A6 0%, #2563EB 100%);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    flex-shrink: 0;
+}
+
+.nps-navbar__user-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.nps-navbar__user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+}
+
+.nps-navbar__user-pran {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'Inter', sans-serif;
+}
+
+/* ── Mobile: Hamburger ── */
+.nps-navbar__hamburger {
+    display: none;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 7px;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    margin-left: auto;
+}
+
+.nps-navbar__hamburger:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Mobile Drawer ── */
+.nps-navbar__drawer {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(11, 16, 38, 0.97);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    z-index: 199;
+    /* Height animation */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s ease;
+}
+
+.nps-navbar__drawer--open {
+    max-height: 520px;
+    padding: 24px 24px 32px;
+}
+
+.nps-navbar__drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.nps-navbar__drawer-link {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.80);
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transition: color 0.2s;
+    font-family: 'Inter', sans-serif;
+}
+
+.nps-navbar__drawer-link:hover {
+    color: #FFFFFF;
+}
+
+.nps-navbar__drawer-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nps-navbar__drawer-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 900px) {
+    .nps-navbar__links {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .nps-navbar {
+        height: 58px;
+    }
+
+    .nps-navbar__inner {
+        height: 58px;
+        padding: 0 16px;
+        gap: 16px;
+    }
+
+    .nps-navbar__drawer {
+        top: 58px;
+    }
+
+    .nps-navbar__actions {
+        display: none;
+    }
+
+    .nps-navbar__hamburger {
+        display: flex;
+    }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+    .nps-navbar__hamburger {
+        display: flex;
+    }
+
+    /* On tablet still show actions on right */
+    .nps-navbar__actions {
+        display: flex;
+    }
+}
